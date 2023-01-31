@@ -15,32 +15,41 @@ def get_operation():
     return random.choice(operation_list)
 
 def ask_question():
+    is_correct = False
     result = 0
     answer = 0
     number_1, number_2 = get_numbers()
     while number_1 < number_2:
         number_1, number_2 = get_numbers()
-    if get_operation() == "-":
-        result = number_1 - number_2
-        answer = int(input(f"{number_1} - {number_2} = "))
-    elif get_operation() == "+":
-        result = number_1 + number_2
-        answer = int(input(f"{number_1} + {number_2} = "))
-    check_answer(answer, result)
+    operation = get_operation()
+    while not is_correct:
+        if operation == "-":
+            result = number_1 - number_2
+            answer = input(f"{number_1} - {number_2} = ")
+            is_correct = check_answer(answer, result)
+        elif operation == "+":
+            result = number_1 + number_2
+            answer = input(f"{number_1} + {number_2} = ")
+            is_correct = check_answer(answer, result)
 
     
 def check_answer(answer, result):
-    if answer == result:
+    os.system('cls')
+    if answer == "q":
+        exit(0)
+    elif int(answer) == result:
         print("giusto")
+        return True   
     else:
         print("sbagliato")
+        return False
 
 
 
 
 
-
-
-ask_question()
+os.system('cls')
+while 0 == 0:
+    ask_question()
 
 
